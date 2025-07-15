@@ -12,6 +12,6 @@ export class Product {
   @Column('decimal')
   price: number;
 
-  @ManyToOne(() => Category, category => category.products)
+  @ManyToOne(() => Category, (category) => category.products)
   category: Category;
 }

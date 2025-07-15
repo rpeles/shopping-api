@@ -7,7 +7,6 @@ import { User } from '../user/user.entity';
 import { CartItem } from '../cart/cart-item.entity';
 import * as bcrypt from 'bcrypt';
 
-
 @Injectable()
 export class SeedService implements OnApplicationBootstrap {
   constructor(
@@ -32,8 +31,8 @@ export class SeedService implements OnApplicationBootstrap {
     const hashedPassword = await bcrypt.hash('1234', 10);
 
     const user = this.userRepo.create({
-    username: 'rachel',
-    password: hashedPassword,
+      username: 'rachel',
+      password: hashedPassword,
     });
     await this.userRepo.save(user);
 
@@ -43,9 +42,21 @@ export class SeedService implements OnApplicationBootstrap {
     await this.categoryRepo.save([cat1, cat2]);
 
     // מוצרים
-    const p1 = this.productRepo.create({ name: 'The Hobbit', price: 50, category: cat1 });
-    const p2 = this.productRepo.create({ name: 'JavaScript Guide', price: 100, category: cat1 });
-    const p3 = this.productRepo.create({ name: 'T-shirt', price: 30, category: cat2 });
+    const p1 = this.productRepo.create({
+      name: 'The Hobbit',
+      price: 50,
+      category: cat1,
+    });
+    const p2 = this.productRepo.create({
+      name: 'JavaScript Guide',
+      price: 100,
+      category: cat1,
+    });
+    const p3 = this.productRepo.create({
+      name: 'T-shirt',
+      price: 30,
+      category: cat2,
+    });
 
     await this.productRepo.save([p1, p2, p3]);
 

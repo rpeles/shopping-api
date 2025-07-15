@@ -12,6 +12,6 @@ export class User {
   @Column()
   password: string;
 
-  @OneToMany(() => CartItem, cartItem => cartItem.user)
+  @OneToMany(() => CartItem, (cartItem) => cartItem.user)
   cart: CartItem[];
 }

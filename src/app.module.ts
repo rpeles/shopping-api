@@ -13,8 +13,8 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-      ConfigModule.forRoot({
-      isGlobal: true, // כך לא תצטרכי לייבא אותו בכל מודול בנפרד
+    ConfigModule.forRoot({
+      isGlobal: true, 
     }),
     TypeOrmModule.forRoot({
       type: 'mssql',
@@ -28,17 +28,14 @@ import { ConfigModule } from '@nestjs/config';
       options: { encrypt: false },
       extra: {
         instanceName: 'SQLEXPRESS',
-      }
+      },
     }),
     TypeOrmModule.forFeature([User, Category, Product, CartItem]),
     AuthModule,
     CategoryModule,
     ProductModule,
     CartModule,
-    SeedModule
+    SeedModule,
   ],
 })
 export class AppModule {}
-
-
-
