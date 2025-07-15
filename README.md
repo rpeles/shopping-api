@@ -8,7 +8,7 @@
 
 ## 🔗 Git Repository
 
-> [https://github.com/rpeles/shopping-api]
+https://github.com/rpeles/shopping-api
 
 ---
 
@@ -25,13 +25,14 @@ The application reflects modern TypeScript development patterns using DTOs, Guar
 
 ---
 
-## 🧩 Main Features
+## 🫩 Main Features
 
 | Endpoint       | Method | Description                    | Auth Required |
 | -------------- | ------ | ------------------------------ | ------------- |
 | `/auth/login`  | POST   | Login with username/password   | ❌             |
 | `/categories`  | GET    | Get all categories             | ✅             |
-| `/products`    | GET    | Get products by user's cart        | ✅             |
+| `/products`    | GET    | Get products by category       | ✅             |
+| `/cart`        | GET    | Get current user's cart        | ✅             |
 | `/cart/add`    | POST   | Add a product to the cart      | ✅             |
 | `/cart/change` | PATCH  | Change quantity of a cart item | ✅             |
 | `/cart/remove` | DELETE | Remove item from the cart      | ✅             |
@@ -45,6 +46,7 @@ The application reflects modern TypeScript development patterns using DTOs, Guar
 * **MSSQL** (SQL Server Express)
 * **JWT Auth**
 * **class-validator** / **class-transformer** for input validation
+* **dotenv** for environment configuration
 
 ---
 
@@ -59,18 +61,18 @@ The application reflects modern TypeScript development patterns using DTOs, Guar
 
 ### 🔑 Configuration
 
-Update `.env` file or `app.module.ts` with:
+Create a `.env` file in the project root with the following content:
 
-```
+```env
 DB_HOST=localhost
 DB_PORT=1433
 DB_USERNAME=sa
-DB_PASSWORD=yourPassword
+DB_PASSWORD=yourStrong(!)Password
 DB_NAME=shopping_db
-JWT_SECRET=yourSuperSecretKey
+
 ```
 
-### 📥 Installation
+### 📅 Installation
 
 ```bash
 git clone https://github.com/your-username/shopping-api
@@ -117,10 +119,12 @@ Seed runs only once if the database is empty.
 
 ## 💬 Notes
 
-* Error handling is done using NestJS's `HttpException` classes.
-* Input validation uses DTO classes with decorators.
-* Code is structured in modules (user, product, category, cart, auth, seed).
-* Postman collection is available in repo.
+* Error handling is done using NestJS's `HttpException` classes
+* Input validation uses DTO classes with decorators
+* Passwords are hashed using `bcrypt`
+* Code is structured in modules (user, product, category, cart, auth, seed)
+* `.env` support is used via `@nestjs/config` and `dotenv`
+* Postman collection is available in repo
 
 ---
 

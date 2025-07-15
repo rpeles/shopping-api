@@ -9,16 +9,20 @@ import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { SeedModule } from './seed/seed.module';
 import { CartModule } from './cart/cart.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+      ConfigModule.forRoot({
+      isGlobal: true, // כך לא תצטרכי לייבא אותו בכל מודול בנפרד
+    }),
     TypeOrmModule.forRoot({
       type: 'mssql',
-      host: 'localhost',
-      port: 1433,
-      username: 'sa',
-      password: 'MyStrongPass123!',
-      database: 'shopping_db',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [User, Category, Product, CartItem],
       synchronize: true,
       options: { encrypt: false },
