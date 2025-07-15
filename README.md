@@ -69,13 +69,14 @@ DB_PORT=1433
 DB_USERNAME=sa
 DB_PASSWORD=yourStrong(!)Password
 DB_NAME=shopping_db
+JWT_SECRET=yourJWT_SECRET
 
 ```
 
 ### 📅 Installation
 
 ```bash
-git clone https://github.com/your-username/shopping-api
+git clone https://github.com/rpeles/shopping-api
 cd shopping-api
 npm install
 ```
